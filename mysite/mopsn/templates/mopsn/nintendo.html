@@ -1,0 +1,43 @@
+{% extends "mopsn/base.html" %}
+{% block content %}
+<div class="row m-5 pb-5">
+
+{% for nin_acc in nintendo %}
+  <div class="col-lg-3  " >
+    <img class="thumbnail " src="{{ nin_acc.imageURL }}" alt="" >
+    <div class="box-element product align-self-end">
+      <br>
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="heading{{nin_acc.id}}">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{nin_acc.id}}" aria-expanded="false" aria-controls="collapse{{nin_acc.id}}">
+                <a class="btn btn-outline-info" href="#">View Details</a>
+              </button>
+            </h5>
+          </div>
+
+          <div id="collapse{{nin_acc.id}}" class="collapse" aria-labelledby="heading{{nin_acc.id}}" data-parent="#accordionExample">
+            <div class="card-body">
+              {{nin_acc.games|linebreaks}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <hr>
+      <button data-product="{{ nin_acc.id }}" data-action="add"  class="btn btn-outline-secondary update-cart">Add to Cart</button>
+      <a class="btn btn-outline-success" href="#">View</a>
+      <h5 style="display: inline-block; float: right;"> <strong>${{ nin_acc.price_paypal }} </strong> </h5>
+
+    </div>
+    <hr>
+  </div>
+{% endfor %}
+
+</div>
+{% endblock %}

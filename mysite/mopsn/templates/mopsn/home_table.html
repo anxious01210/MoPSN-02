@@ -1,0 +1,62 @@
+{% extends "mopsn/base.html" %}
+{% load static %}
+{% block title %}MoPSN | home{% endblock %}
+{% block content %}
+
+  <div class="">
+    <div class="jumbotron">
+      <h2>PS4</h2>
+      <hr>
+    </div>
+      <div class="px-4">
+        <table class=" table-bordered table-hover table-sm align-self-center ">
+          <tr>
+            <thead>
+              <th>ID</th>
+              <th>Image</th>
+              <th>Games</th>
+              <th>Paypal</th>
+              <th>BTC</th>
+              <th>Region</th>
+              <th>Date</th>
+              <th>Sold</th>
+            </thead>
+          </tr>
+          {% for i in ps4 %}
+          <tr>
+            <td>{{i.id}} </td>
+            <td><img class="img-fluid" src="{{ i.imageURL }}"  style=""alt="Responsive image" ></td>
+            <td>{{i.games}} </td>
+            <td>${{i.price_paypal}}</td>
+            <td>${{i.price_btc}}</td>
+            <td>{{i.region_code}}-{{i.region_country}}</td>
+            <td>{{i.publish_date|date:"M-d G:H"}}</td>
+            <td>{{i.sold}}</td>
+          </tr>
+
+
+          {% endfor %}
+        </table>
+      </div>
+      {% for k in ps4 %}
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="heading{{k.id}}">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{k.id}}" aria-expanded="false" aria-controls="collapse{{k.id}}">
+                Account Details #{{k.id}}
+              </button>
+            </h5>
+          </div>
+
+          <div id="collapse{{k.id}}" class="collapse" aria-labelledby="heading{{k.id}}" data-parent="#accordionExample">
+            <div class="card-body">
+              {{k.games|linebreaks}}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+  </div>
+  <br>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "mopsn/base.html" %}
+{% block content %}
+
+<div class="jumbotron px-5 mx-5 pb-3">
+  <h1 class="display-4">PS4 Accounts</h1>
+  <p class="lead">This is where you can find PS4 accounts with your desired games in them.</p>
+  <hr class="my-4">
+  <p>Check the accounts details, if you like it add to the cart and checkout with payment. When your payment is done you will receive your account credentials. We accept Paypal, BTC, WMZ.</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  </p>
+</div>
+<div class="row m-5 pb-5">
+
+{% for i in ps4 %}
+  <div class="col-lg-3  " >
+    <img class="thumbnail " src="{{ i.imageURL }}" alt=""  >
+    <div class="box-element product align-self-end">
+      <br>
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header row" id="heading{{i.id}}">
+
+            <div class="col-sm align-self-end">
+              <p> <em> Account ID: </em>  <strong> {{ i.id }} </strong>  </p>
+            </div>
+            <div class="col-sm">
+              <button  class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{i.id}}" aria-expanded="false" aria-controls="collapse{{ i.id }}">
+                <a class="btn btn-outline-info" >View Details</a>
+              </button >
+            </div>
+
+          </div>
+
+          <div id="collapse{{i.id}}" class="collapse" aria-labelledby="heading{{i.id}}" data-parent="#accordionExample">
+            <div class="card-body">
+              {{i.games|linebreaks}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <button data-product="{{ i.id }}" data-action="add"  class="btn btn-outline-secondary update-cart">Add to Cart</button>
+      <a class="btn btn-outline-success" >View X</a>
+      <h5 style="display: inline-block; float: right;"> <strong>${{ i.price_paypal }} </strong> </h5>
+
+    </div>
+    <hr>
+  </div>
+{% endfor %}
+
+</div>
+{# {% block costum_js %} <link rel="stylesheet" href="{% static "mopsn/css/mystyle.css" %}"> {% endblock %} #}
+{% endblock %}

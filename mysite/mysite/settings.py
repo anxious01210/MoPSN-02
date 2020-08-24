@@ -74,12 +74,28 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mopsn1',
+        'USER': 'mopsn1',
+        'PASSWORD': 'mopsn_Password1',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 
 
 # Password validation
@@ -114,8 +130,16 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+import os
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'mopsn/static')
+
+
+# MEDIA_ROOT is for server path to store files in the computer.
+MEDIA_ROOT  = os.path.join(BASE_DIR, 'mopsn/media')
+
+# MEDIA_URL is the reference URL for browser to access the files over Http.
+MEDIA_URL = 'mopsn/media/'
